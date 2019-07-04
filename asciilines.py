@@ -35,17 +35,32 @@ def stringify(matr):
         out_string += '\n'
     return out_string.rstrip()
 
+def place_line(line, matrix):
+    specs = line.split(' ')
+    char = specs[0]
+    y_pos = int(specs[1])
+    x_pos = int(specs[2])
+    matrix[y_pos][x_pos] = char
+
+
+
+
 #read tvg file
-
+ext = file_name[len(file_name)-4:]
+if ext != ".tvg":
+    quit()
 file = open(file_name, 'r')
+line = file.readline()
+matrix = createMat(line)
 
-matrix = createMat(file.read())
+# make line
+for line in file:
+    place_line(line,matrix)
+
 if matrix == None:
     quit()
 print (stringify(matrix))
 
 #parse file
 
-
-# make line
 # write to file
